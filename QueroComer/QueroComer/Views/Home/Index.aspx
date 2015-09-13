@@ -8,16 +8,14 @@
   
 </asp:Content>
 
-<asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="painel">
-		<div>
-			<input type="button" scope="public_profile,email" onclick="checkLoginState();" value="Login com Facebook" /><br />
-		</div>
+<asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">    
+    <div class="painel">		
+        <button onclick="checkLoginState();">Login com o Facebook!</button>
 		<label>E-mail:</label>
 		<input class="login" />
 		<button>Entrar</button><br />
 		<label>Senha:</label>
 		<input class="login" />
-		<button>Cadastrar</button>
+		<button onclick="">Cadastrar</button>
 	</div>
 </asp:Content>
