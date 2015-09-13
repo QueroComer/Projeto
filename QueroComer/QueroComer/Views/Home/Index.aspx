@@ -16,18 +16,13 @@
 </asp:Content>
 
 <asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">    
-    <div class="painel">
-		<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-        </fb:login-button>
-
-        <div id="status">
-        </div>
-
+    <div class="painel">		
+        <button onclick="checkLoginState();">Login com o Facebook!</button>
 		<label>E-mail:</label>
 		<input class="login" />
 		<button>Entrar</button><br />
 		<label>Senha:</label>
 		<input class="login" />
-		<button>Cadastrar</button>
+		<button onclick="">Cadastrar</button>
 	</div>
 </asp:Content>
