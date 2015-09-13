@@ -15,11 +15,14 @@
     </section>
 </asp:Content>
 
-<asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">    
     <div class="painel">
-		<div>
-			<input type="button" scope="public_profile,email" onclick="checkLoginState();" value="Login com Facebook" /><br />
-		</div>
+		<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+        </fb:login-button>
+
+        <div id="status">
+        </div>
+
 		<label>E-mail:</label>
 		<input class="login" />
 		<button>Entrar</button><br />
