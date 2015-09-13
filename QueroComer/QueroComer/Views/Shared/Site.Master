@@ -15,6 +15,17 @@
         </header>
         <div id="body">
             <asp:ContentPlaceHolder ID="FeaturedContent" runat="server" />
+              <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="botoes">
+                <button>Lugares</button>
+                <button>Pratos</button>
+                <button>Aberto Agora</button>
+                <button>Promoções</button>
+          
+            </hgroup>            
+        </div>
+    </section>
             <section class="content-wrapper main-content clear-fix">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server" />
             </section>

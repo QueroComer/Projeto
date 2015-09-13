@@ -31,7 +31,10 @@ a {
         background-color: #c7d1d6;
     }
 
-header, footer, hgroup,
+hgroup {
+    text-align: center;
+}
+header, footer,
 nav, section {
     display: block;
 }
@@ -66,7 +69,8 @@ h4, h5, h6 {
 }
 
 h1 {
-    font-size: 2em;
+    font-size: 5em;
+    text-align: center;
 }
 
 h2 {
@@ -458,7 +462,6 @@ textarea {
         font-size: 1.2em;
         font-weight: 600;
         padding: 7px;
-        margin-right: 8px;
         width: auto;
     }
 
@@ -652,7 +655,10 @@ tr.pager td {
             padding: 0;
         }
 
-
+    .botoes {
+       
+        text-align: center;
+    }
     /* main layout
     ----------------------------------------------------------*/
     .main-content,
@@ -666,7 +672,7 @@ tr.pager td {
     }
 
     .featured .content-wrapper {
-        padding: 10px;
+        
     }
 
     /* page content */
@@ -734,6 +740,11 @@ tr.pager td {
         margin-left: 0;
         float: none;
         width: auto;
+    }
+
+    .painel {
+    
+       
     }
 
 
