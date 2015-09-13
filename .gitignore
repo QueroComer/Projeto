@@ -1,0 +1,10 @@
+QueroComer/QueroComer/bin/QueroComer.dll
+*.dll
+QueroComer/QueroComer/bin/QueroComer.pdb
+*.db
+QueroComer/QueroComer/bin/QueroComer.pdb
+*.dll
+*.pdb
+QueroComer/QueroComer/obj/Debug/QueroComer.csprojResolveAssemblyReference.cache
+*.txt
+QueroComer/QueroComer/obj/Debug/QueroComer.csproj.FileListAbsolute.txt
