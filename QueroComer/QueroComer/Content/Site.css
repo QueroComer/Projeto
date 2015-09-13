@@ -371,7 +371,16 @@ aside {
     float: left;
     width: 40%;
 }
+    
+     .painel {
+           margin-left: 30%;
+           position: relative;
 
+    }
+
+.botao {
+    margin: 2px;
+}
     #socialLoginForm h2 {
         margin-bottom:  5px;
     }
@@ -656,9 +665,10 @@ tr.pager td {
         }
 
     .botoes {
-       
+        position: relative;
         text-align: center;
     }
+
     /* main layout
     ----------------------------------------------------------*/
     .main-content,
@@ -740,11 +750,6 @@ tr.pager td {
         margin-left: 0;
         float: none;
         width: auto;
-    }
-
-    .painel {
-    
-       
     }
 
 
