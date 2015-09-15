@@ -10,12 +10,12 @@
 
 <asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">    
     <div class="painel">		
-        <button onclick="checkLoginState();">Login com o Facebook!</button>
-		<label required >E-mail:</label>
-		<input class="login" />
-		<button>Entrar</button><br />
+		<label>E-mail:</label>
+		<input class="login" /><br />
 		<label>Senha:</label>
-		<input required class="login" />
-		<button onclick="">Cadastrar</button>
+		<input class="login" /><br />
+        <button class="botao">Entrar</button>
+		<button class="botao" onclick="">Cadastrar</button><br />
+        <button class="botao" onclick="checkLoginState();">Login com o Facebook!</button>
 	</div>
 </asp:Content>

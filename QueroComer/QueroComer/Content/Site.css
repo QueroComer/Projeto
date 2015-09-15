@@ -376,7 +376,16 @@ aside {
     float: left;
     width: 40%;
 }
+    
+     .painel {
+           margin-left: 30%;
+           position: relative;
 
+    }
+
+.botao {
+    margin: 2px;
+}
     #socialLoginForm h2 {
         margin-bottom: 5px;
     }
@@ -661,8 +670,13 @@ tr.pager td {
         }
 
     .botoes {
+<<<<<<< HEAD
+=======
+        position: relative;
+>>>>>>> origin/master
         text-align: center;
     }
+
     /* main layout
     ----------------------------------------------------------*/
     .main-content,
@@ -745,6 +759,10 @@ tr.pager td {
         width: auto;
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
     /* footer
     ----------------------------------------------------------*/
     footer .float-left,
