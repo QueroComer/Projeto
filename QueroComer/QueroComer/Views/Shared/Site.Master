@@ -24,8 +24,8 @@
                 <button>Lugares</button>
                 <button>Pratos</button>
                 <button>Aberto Agora</button>
-                <button>Promoções</button><br />
-                <button>Pesquisar</button>
+                <button>Promoções</button>
+                <button style="margin-left:10em;">Pesquisar</button>
                 <input type="text" />
           
             </hgroup>            

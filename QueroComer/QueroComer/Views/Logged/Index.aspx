@@ -12,9 +12,12 @@
     <div class="sugestoes">
         <button>Sugestoes</button>
         <ul>
-            <li></li>
+            <li>teste1</li>
+            <li>teste2</li>
+            <li>teste3</li>
         </ul>
     </div>
     <div class="map">		
+        teste
 	</div>
 </asp:Content>

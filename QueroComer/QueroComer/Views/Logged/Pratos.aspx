@@ -9,11 +9,11 @@
 </asp:Content>
 
 <asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">    
-    <div class="sugestoes">
-        <ul>
-            <li></li>
-        </ul>
+    <div>
+        <p>Pesquise por:</p>
     </div>
-    <div class="map">		
-	</div>
+    <button>Nome</button>
+    <button>Tipo de prato</button>
+    <button>Preco</button>
+    <input type="text" />
 </asp:Content>

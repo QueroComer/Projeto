@@ -16,5 +16,25 @@ namespace QueroComer.Controllers
             return View();
         }
 
+        public ActionResult Pratos()
+        {
+            return View();
+        }
+
+        public ActionResult Lugares()
+        {
+            return View();
+        }
+
+        public ActionResult Promocoes()
+        {
+            return View();
+        }
+
+        public ActionResult AbertoAgora ()
+        {
+            return View();
+        }
+
     }
 }
