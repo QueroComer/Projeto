@@ -238,27 +238,39 @@ ul#menu {
     }
 
 .quadro {
-    position:absolute;
-    padding-top:2em;
-    padding-left:5em;
+    position: absolute;
+    padding-top: 2em;
+    padding-left: 5em;
 }
 
 .painel {
-    position:absolute;
- 
-    padding-left:30em;
+    position: absolute;
+    padding-left: 30em;
 }
 
 .sugestoes {
-    position:absolute;
-    padding-top:2em;
-    padding-left:5em;
+    position: absolute;
+    width: 250px;
+    height: 300px;
+    display: block;
+    overflow-y: auto;
 }
-
+    .sugestoes > ul {
+        list-style-type: none;
+        padding: 0px;
+        width: auto;
+    }
+    .sugestoes > ul > li {        
+        height: 19px;
+        border: 1px black solid;
+        padding: 1.1em 1em;
+    }
+    
 .map {
-    position:absolute;
- 
-    padding-left:30em;
+    margin-left: 35%;
+    position: relative;
+    display: block;
+    min-height: 300px;
 }
 /* page titles */
 hgroup.title {

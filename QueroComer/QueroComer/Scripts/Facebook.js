@@ -1,14 +1,12 @@
 ﻿// This is called with the results from from FB.getLoginStatus().
 function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
     // The response object is returned with a status field that lets the
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
         // Logged into your app and Facebook.
-        loginComFacebook();
+        //loginComFacebook();
     } else if (response.status === 'not_authorized') {
         // The person is logged into Facebook, but not your app.
         document.getElementById('status').innerHTML = 'Please log ' +
@@ -74,11 +72,10 @@ function loginComFacebook() {
         if (response.authResponse) {
             console.log('Welcome!  Fetching your information.... ');
             FB.api('/me', function (response) {
-                console.log('Good to see you, ' + response.name + '.');
-                console.log(JSON.stringify(response));
+                window.location = "Logged";
             });
         } else {
-            console.log('User cancelled login or did not fully authorize.');
+           Alert('User cancelled login or did not fully authorize.');
         }
     }, { scope: 'email,user_likes' , return_scopes: true});
 }

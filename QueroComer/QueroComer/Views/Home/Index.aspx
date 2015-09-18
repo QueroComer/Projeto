@@ -17,6 +17,6 @@
         <input class="login" /><br />
         <button class="botao">Entrar</button>
         <button class="botao" onclick="">Cadastrar</button><br />
-        <button class="botao" onclick="checkLoginState();">Login com o Facebook!</button>
+        <button class="botao" onclick="loginComFacebook();">Login com o Facebook!</button>
     </div>
 </asp:Content>
