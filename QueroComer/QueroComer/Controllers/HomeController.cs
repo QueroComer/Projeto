@@ -26,5 +26,14 @@ namespace QueroComer.Controllers
 
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Autenticar(FormCollection formulario)
+        {
+            if (string.IsNullOrEmpty(formulario["txt_usuario"]) && string.IsNullOrEmpty(formulario["txt_senha"]))
+                return RedirectToAction("Index");
+
+            return RedirectToAction("Index","Logged");
+        }
     }
 }

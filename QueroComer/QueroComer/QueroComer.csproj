@@ -266,6 +266,7 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Utils.js" />
     <Content Include="Views\Logged\Pratos.aspx" />
     <Content Include="Views\Logged\AbertoAgora.aspx" />
     <Content Include="Views\Logged\Promocoes.aspx" />
