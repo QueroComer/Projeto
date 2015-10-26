@@ -20,6 +20,19 @@ namespace QueroComer.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Cadastro()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Cadastro(FormCollection formulario)
+        {
+
+            return View();
+        }
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

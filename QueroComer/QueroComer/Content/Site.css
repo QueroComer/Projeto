@@ -150,14 +150,14 @@ footer {
 
 /* login
 ----------------------------------------------------------*/
-#login {
+form#login {
     display: block;
     font-size: .85em;
     margin: 0 0 10px;
     text-align: right;
 }
 
-    #login a {
+    form#login a {
         background-color: #d3dce0;
         margin-left: 10px;
         margin-right: 3px;
@@ -165,18 +165,18 @@ footer {
         text-decoration: none;
     }
 
-        #login a.username {
+        form#login a.username {
             background: none;
             margin: 0;
             padding: 0;
             text-decoration: underline;
         }
 
-    #login ul {
+    form#login ul {
         margin: 0;
     }
 
-    #login li {
+    form#login li {
         display: inline;
         list-style: none;
     }
@@ -787,8 +787,7 @@ tr.pager td {
         float: none;
         width: auto;
     }
-
-    <<<<<<< HEAD ======= > > > > > > > origin/master
+    
     /* footer
     ----------------------------------------------------------*/
     footer .float-left,
@@ -805,4 +804,17 @@ tr.pager td {
         footer p {
             margin: 0;
         }
+}
+
+.invalido {
+    border-color: #F00;    
+}
+
+.alerta {
+    color:red;
+    display:inline;
+    margin-left: 5px;
+    text-decoration:none;
+    font-weight:normal;
+    font-size:10px;
 }

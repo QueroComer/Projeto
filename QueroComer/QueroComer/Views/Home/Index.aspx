@@ -14,10 +14,10 @@
             <label>Login ou E-mail:</label>
             <input type="text" name="txt_usuario" id="txt_usuario" class="login" required /><br />
             <label>Senha:</label>
-            <input type="password" name="txt_senha" id="txt_senha" class="login" required /><br />
-            <button class="botao" onclick="loginComEmail();">Entrar</button>
-            <button class="botao" onclick="">Cadastrar</button><br />
-            <button class="botao" onclick="loginComFacebook();">Login com o Facebook!</button>
+            <input type="password" name="txt_senha" id="txt_senha" class="login" required /><br />            
+            <input type="button" class="botao" value="Entrar" onclick="loginComEmail();" />
+            <input type="button" class="botao" value="Cadastrar" onclick="cadastrar();" /><br />
+            <input type="button" class="botao" value="Login com o Facebook" onclick="loginComEmail();" />
         </div>
     </form>
 </asp:Content>

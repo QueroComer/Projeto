@@ -249,7 +249,9 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\crawler-js.js" />
     <Content Include="Scripts\Facebook.js" />
+    <Content Include="Scripts\Foursquare.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -266,7 +268,10 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\QRCode.js" />
+    <Content Include="Scripts\qrcode.min.js" />
     <Content Include="Scripts\Utils.js" />
+    <Content Include="Views\Home\Cadastro.aspx" />
     <Content Include="Views\Logged\Pratos.aspx" />
     <Content Include="Views\Logged\AbertoAgora.aspx" />
     <Content Include="Views\Logged\Promocoes.aspx" />

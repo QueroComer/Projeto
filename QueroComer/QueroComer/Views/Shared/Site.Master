@@ -8,10 +8,10 @@
         <meta name="viewport" content="width=device-width" />
         <%: Styles.Render("~/Content/css") %>
         <%: Scripts.Render("~/Scripts/jquery.js") %>     
-        <%: Scripts.Render("~/bundles/modernizr") %>     
-        <%: Scripts.Render("~/Scripts/jquery.validate.js") %>           
+        <%: Scripts.Render("~/bundles/modernizr") %>                                
         <%: Scripts.Render("~/Scripts/Utils.js") %>
-        <%: Scripts.Render("~/Scripts/Facebook.js") %>        
+        <%: Scripts.Render("~/Scripts/Facebook.js") %>                
+        
     </head>
     <body>
         <header>
@@ -36,12 +36,7 @@
                 <asp:ContentPlaceHolder ID="MainContent" runat="server" />
             </section>
         </div>
-        <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                   teste
-                </div>
-            </div>
+        <footer>       
         </footer>
 
         <%: Scripts.Render("~/bundles/jquery") %>
