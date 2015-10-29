@@ -8,20 +8,7 @@
 </asp:Content>
 
 <asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">    
-    <div class="sugestoes">
-        <ul>
-            <li>teste1</li>
-            <li>teste2</li>
-            <li>teste2</li>
-            <li>teste2</li>
-            <li>teste2</li>
-            <li>teste2</li>
-            <li>teste2</li>
-            <li>teste2</li>
-            <li>teste2</li>
-            <li>teste3</li>
-        </ul>
-    </div>
+    <div class="sugestoes"></div>
     <div class="map">
         MAPA AQUI
     </div>

@@ -29,7 +29,6 @@ namespace QueroComer.Controllers
         [HttpPost]
         public ActionResult Cadastro(FormCollection formulario)
         {
-
             return View();
         }
 

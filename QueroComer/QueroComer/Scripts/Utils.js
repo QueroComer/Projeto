@@ -75,10 +75,6 @@ function makeCode() {
     });
     qrcode.makeCode();
 }*/
-$(document).ready(function () {
-
-});
-
 
 function parseDate(str) {
     var m = str.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);

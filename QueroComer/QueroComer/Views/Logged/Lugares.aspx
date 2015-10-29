@@ -10,9 +10,7 @@
 
 <asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">    
     <div class="sugestoes">
-        <ul>
-            <li></li>
-        </ul>
+        
     </div>
     <div class="map">		
 	</div>

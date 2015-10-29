@@ -10,7 +10,8 @@
         <%: Scripts.Render("~/Scripts/jquery.js") %>     
         <%: Scripts.Render("~/bundles/modernizr") %>                                
         <%: Scripts.Render("~/Scripts/Utils.js") %>
-        <%: Scripts.Render("~/Scripts/Facebook.js") %>                
+        <%: Scripts.Render("~/Scripts/Facebook.js") %>
+        <%: Scripts.Render("~/Scripts/Foursquare.js") %>
         
     </head>
     <body>
@@ -22,12 +23,13 @@
               <section class="featured">
         <div class="content-wrapper">
             <hgroup class="botoes">
-                <button>Lugares</button>
-                <button>Pratos</button>
-                <button>Aberto Agora</button>
-                <button>Promoções</button>
-                <button style="margin-left:10em;">Pesquisar</button>
-                <input type="text" />
+                <input type="button" name="Lugares" value="Lugares"  onclick="explorePlaces();" id="Lugares" />
+                <input type="button" name="Pratos" value="Pratos" id="Pratos"onclick="explorePlaces();"  />
+                <input type="button" name="abertoAgora" value="Aberto Agora"  onclick="searchPlaces(null,true);" id="abertoAgora" />                
+                <input type="button" name="promocoes" value="Promoções"  onclick="searchPlaces(this.value);" id="promocoes" />
+                        
+                <input  style="margin-left:10em;" name="txtpesquisar" id="txtpesquisar" type="text" onkeyup="searchPlaces($('#txtpesquisar').val());" />
+                <input type="button" name="pesquisar" value="Pesquisar" id="btnpesquisar" onclick="searchPlaces($('#txtpesquisar').val());" />
           
             </hgroup>            
         </div>

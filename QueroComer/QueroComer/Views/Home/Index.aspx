@@ -17,7 +17,7 @@
             <input type="password" name="txt_senha" id="txt_senha" class="login" required /><br />            
             <input type="button" class="botao" value="Entrar" onclick="loginComEmail();" />
             <input type="button" class="botao" value="Cadastrar" onclick="cadastrar();" /><br />
-            <input type="button" class="botao" value="Login com o Facebook" onclick="loginComEmail();" />
+            <input type="button" class="botao" value="Login com o Facebook" onclick="loginComFacebook();" />
         </div>
     </form>
 </asp:Content>
