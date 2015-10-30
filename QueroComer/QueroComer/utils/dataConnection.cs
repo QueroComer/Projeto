@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using MySql.Data.MySqlClient;
-using System.IO;
-using System.Diagnostics;
 
 namespace QueroComer.utils
 {
@@ -33,7 +31,7 @@ namespace QueroComer.utils
         connectionString = "SERVER=" + server + ";" + "DATABASE=" + 
 		database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
 
-        connection = new MySqlConnection();
+        connection = new MySqlConnection(connectionString);
     }
 
     //open connection to database
@@ -78,9 +76,9 @@ namespace QueroComer.utils
     }
 
     //Insert statement
-    public void Insert(string table, string[] campos, string[] values)
+    public void Insert(string query)
     {
-        string query = String.Format("INSERT INTO {0} ({}1) VALUES({2})", table, campos, values);
+        query = "INSERT INTO tableinfo (name, age) VALUES('John Smith', '33')";
 
         //open connection
         if (this.OpenConnection() == true)
@@ -97,30 +95,9 @@ namespace QueroComer.utils
     }
 
     //Update statement
-    public void Update(string table, string[] campos, string values, string[] clauses)
+    public void Update(string query)
     {
-       string  query = "UPDATE {0} SET ";
-       for (int i = 0; i < values.Length; i++)
-       {
-           query += String.Format("{0} = '{1}'",campos[i], values[i]);
-           if ((i + 1) < values.Length)
-           {
-               query += ", ";
-           }
-       }
-
-       if (clauses.Length != 0 && clauses != null)
-       {
-           query += "WHERE";
-           for (int i = 0; i < clauses.Length; i++)
-           {
-               query += String.Format("{0}'", clauses[i]);
-               if ((i + 1) < clauses.Length)
-               {
-                   query += " AND ";
-               }
-           }
-       }
+        query = "UPDATE tableinfo SET name='Joe', age='22' WHERE name='John Smith'";
 
         //Open connection
         if (this.OpenConnection() == true)
@@ -141,22 +118,9 @@ namespace QueroComer.utils
     }
 
     //Delete statement
-    public void Delete(string table, string[] clauses)
+    public void Delete(string query)
     {
-        string query = "DELETE FROM {0} ";
-
-        if (clauses.Length != 0 && clauses != null)
-        {
-            query += " WHERE ";
-            for (int i = 0; i < clauses.Length; i++)
-            {
-                query += String.Format("{0}'", clauses[i]);
-                if ((i + 1) < clauses.Length)
-                {
-                    query += " AND ";
-                }
-            }
-        }
+        query = "DELETE FROM tableinfo WHERE name='John Smith'";
 
         if (this.OpenConnection() == true)
         {
