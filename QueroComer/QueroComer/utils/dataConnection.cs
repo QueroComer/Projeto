@@ -167,9 +167,43 @@ namespace QueroComer.utils
     }
 
     //Select statement
-    public List<string>[] Select(string query)
+    public List<string>[] Select(string table, string[] joins, string[] collumns, string[] clauses )
     {
-        query = "SELECT * FROM tableinfo";
+        string query = String.Format("SELECT ");
+
+        for (int i = 0; i < collumns.Length; i++)
+        {
+            query += String.Format("{0}", collumns[i]);
+            if ((i + 1) < collumns.Length)
+            {
+                query += ", ";
+            }
+        }
+
+        query += String.Format(" FROM {0} ", table);
+
+        if (joins.Length != 0 && joins != null)
+        {
+            query += " JOIN ";
+            for (int i = 0; i < joins.Length; i++)
+            {
+                query += String.Format("{0}'", joins[i]);                
+            }
+        }
+
+        if (clauses.Length != 0 && clauses != null)
+        {
+            query += " WHERE ";
+            for (int i = 0; i < clauses.Length; i++)
+            {
+                query += String.Format("{0}'", clauses[i]);
+                if ((i + 1) < clauses.Length)
+                {
+                    query += " AND ";
+                }
+            }
+        }
+
 
         //Create a list to store the result
         List<string>[] list = new List<string>[3];
