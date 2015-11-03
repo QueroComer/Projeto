@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QueroComer.utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,12 @@ namespace QueroComer.Controllers
 {
     public class HomeController : Controller
     {
-        [HttpPost]
-        public ActionResult ValidaCadastro(FormCollection cadastro)
+
+        private ActionResult ValidaCadastro(FormCollection cadastro)
         {
             DateTime data;
+
+            dataConnection conexao = new dataConnection();
 
             if (string.IsNullOrEmpty(cadastro["Login"]))
             {
@@ -59,6 +62,20 @@ namespace QueroComer.Controllers
                 ViewBag.Mensagem = "Digite uma data válida!";
             }
 
+            if (String.IsNullOrEmpty(ViewBag.Messagem))
+            {
+                try
+                {
+                    conexao.Insert("usuarios", new string[] { "nom_usuario", "dt_nascimento", "email", "senha" }, new string[] { cadastro["Nome"], data.Year + "-" + data.Month + "-" + data.Day, cadastro["Login"], cadastro["Senha"] });
+                    return RedirectToAction("Index", "Logged");
+                }
+                catch
+                {
+                    ViewBag.Mensagem = "Erro ao inserir usuário!";
+                }
+            }
+
+            return View("Cadastro",cadastro);
         }
 
         public ActionResult Index()
@@ -82,7 +99,7 @@ namespace QueroComer.Controllers
         [HttpPost]
         public ActionResult Cadastro(FormCollection formulario)
         {
-            return View();
+            return this.ValidaCadastro(formulario);
         }
 
         public ActionResult Contact()
@@ -98,7 +115,7 @@ namespace QueroComer.Controllers
             if (string.IsNullOrEmpty(formulario["txt_usuario"]) && string.IsNullOrEmpty(formulario["txt_senha"]))
                 return RedirectToAction("Index");
 
-            return RedirectToAction("Index","Logged");
+            return RedirectToAction("Index", "Logged");
         }
     }
 }

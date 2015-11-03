@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using MySql.Data.MySqlClient;
+using System.Diagnostics;
+using System.IO;
 
 namespace QueroComer.utils
 {
@@ -75,10 +77,10 @@ namespace QueroComer.utils
         }
     }
 
-    //Insert statement
-    public void Insert(string query)
+//Insert statement
+    public void Insert(string table, string[] campos, string[] values)
     {
-        query = "INSERT INTO tableinfo (name, age) VALUES('John Smith', '33')";
+        string query = String.Format("INSERT INTO {0} ({1}) VALUES('{2}')", table, string.Join(",",campos), string.Join("','",values));
 
         //open connection
         if (this.OpenConnection() == true)
@@ -95,9 +97,30 @@ namespace QueroComer.utils
     }
 
     //Update statement
-    public void Update(string query)
+    public void Update(string table, string[] campos, string values, string[] clauses)
     {
-        query = "UPDATE tableinfo SET name='Joe', age='22' WHERE name='John Smith'";
+       string  query = "UPDATE {0} SET ";
+       for (int i = 0; i < values.Length; i++)
+       {
+           query += String.Format("{0} = '{1}'",campos[i], values[i]);
+           if ((i + 1) < values.Length)
+           {
+               query += ", ";
+           }
+       }
+
+       if (clauses.Length != 0 && clauses != null)
+       {
+           query += "WHERE";
+           for (int i = 0; i < clauses.Length; i++)
+           {
+               query += String.Format("{0}'", clauses[i]);
+               if ((i + 1) < clauses.Length)
+               {
+                   query += " AND ";
+               }
+           }
+       }
 
         //Open connection
         if (this.OpenConnection() == true)
@@ -118,16 +141,29 @@ namespace QueroComer.utils
     }
 
     //Delete statement
-    public void Delete(string query)
+    public void Delete(string table, string[] clauses)
     {
-        query = "DELETE FROM tableinfo WHERE name='John Smith'";
+        string query = "DELETE FROM {0} ";
+
+        if (clauses.Length != 0 && clauses != null)
+        {
+            query += " WHERE ";
+            for (int i = 0; i < clauses.Length; i++)
+            {
+                query += String.Format("{0}'", clauses[i]);
+                if ((i + 1) < clauses.Length)
+                {
+                    query += " AND ";
+                }
+            }
+        }
 
         if (this.OpenConnection() == true)
         {
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.ExecuteNonQuery();
             this.CloseConnection();
-        }
+        }    
     }
 
     //Select statement
@@ -186,9 +222,10 @@ namespace QueroComer.utils
             //Read the data and store them in the list
             while (dataReader.Read())
             {
-                list[0].Add(dataReader["id"] + "");
-                list[1].Add(dataReader["name"] + "");
-                list[2].Add(dataReader["age"] + "");
+                foreach (string collumn in collumns)
+                {
+                    list[0].Add(dataReader[collumn] + "");
+                }
             }
 
             //close Data Reader

@@ -34,6 +34,10 @@
             </hgroup>            
         </div>
     </section>
+            <section class="featured clear-fix">
+                <asp:ContentPlaceHolder ID="AlertContent" runat="server" />
+                <label><%=string.IsNullOrEmpty(ViewBag.Mensagem) ? "" : ViewBag.Mensagem.ToString() %></label>
+            </section>
             <section class="content-wrapper main-content clear-fix">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server" />
             </section>

@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
 <asp:Content ID="TitleContent" ContentPlaceHolderID="MainContent" runat="server">
-    <form action="/Logged" onsubmit="validaForm();">
+    <form action="Cadastro" method="post" onsubmit="validaForm();">
         <div class="Cadastro">
             <label for="login">Login:*</label>
             <input type="email" placeholder="Digite seu email" id="login" name="Login" required />
