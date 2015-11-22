@@ -11,9 +11,11 @@ var validaForm = function () {
         if ($(this).attr("required") != undefined) {
             if ($(this).val() == "" || $(this).val() == undefined) {                
                 mensagem = "Por favor, preencha o campo " + nomeCampo;
-            }else if ($(this).attr("type") == "date" && doDateVenc) {                
-                mensagem = "Data incorreta";
-            } else if ($(this).attr("type") == "password" && $(this).val() != $(this).next("input[type='password']").val()) {                
+            }//else if ($(this).attr("type") == "date" && doDateVenc) {                
+               // mensagem = "Data incorreta";
+        //}
+            else if ($(this).attr("type") == "password" && ($(this).val() != $(this).next("input[type='password']").val() && $(this).next("input[type='password']").length > 1)) {
+                console.log($(this).next("input[type='password']"));
                mensagem = "As senhas devem ser iguais!";
             } else if ($(this).attr("type") == "email" && !filtroEmail.test($(this).val())) {
                 mensagem = "E-mail invalido!";
@@ -33,7 +35,15 @@ var cadastrar = function () {
 }
 
 var loginComEmail = function () {
-    validaForm();
+    if (validaForm()) {
+        $.post("Home/Login", $("form").serialize() , function (data) {
+            if (data.status == true) {
+                window.location = "Logged";
+            } else {
+                alert("Falha ao realizar login!");
+            }
+        }, "json");
+    }
 }
 
 var reDate4 = /^((0?[1-9]|[12]\d)\/(0?[1-9]|1[0-2])|30\/(0?[13-9]|1[0-2])|31\/(0?[13578]|1[02]))\/(19|20)?\d{2}$/;

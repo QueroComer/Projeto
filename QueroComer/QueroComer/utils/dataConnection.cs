@@ -10,340 +10,344 @@ namespace QueroComer.utils
 {
     public class dataConnection
     {
-    private MySqlConnection connection;
-    private string server;
-    private string database;
-    private string uid;
-    private string password;
+        private MySqlConnection connection;
+        private string server;
+        private string database;
+        private string uid;
+        private string password;
 
-    //Constructor
-    public dataConnection()
-    {
-        Initialize();
-    }
-
-    //Initialize values
-    private void Initialize()
-    {
-        server = "localhost";
-        database = "queroComer";
-        uid = "root";
-        password = "";
-        string connectionString;
-        connectionString = "SERVER=" + server + ";" + "DATABASE=" + 
-		database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
-
-        connection = new MySqlConnection(connectionString);
-    }
-
-    //open connection to database
-    private bool OpenConnection()
-    {
-        try
+        //Constructor
+        public dataConnection()
         {
-            connection.Open();
-            return true;
+            Initialize();
         }
-        catch (MySqlException ex)
-        {
-            //When handling errors, you can your application's response based 
-            //on the error number.
-            //The two most common error numbers when connecting are as follows:
-            //0: Cannot connect to server.
-            //1045: Invalid user name and/or password.
-            switch (ex.Number)
-            {
-                case 0:
-                    throw new Exception("Cannot connect to server.  Contact administrator");
 
-                case 1045:
-                    throw new Exception("Invalid username/password, please try again");
+        //Initialize values
+        private void Initialize()
+        {
+            server = "localhost";
+            database = "queroComer";
+            uid = "root";
+            password = "";
+            string connectionString;
+            connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+
+            connection = new MySqlConnection(connectionString);
+        }
+
+        //open connection to database
+        private bool OpenConnection()
+        {
+            try
+            {
+                connection.Open();
+                return true;
             }
-            return false;
-        }
-    }
-
-    //Close connection
-    private bool CloseConnection()
-    {
-        try
-        {
-            connection.Close();
-            return true;
-        }
-        catch (MySqlException ex)
-        {
-            throw new Exception(ex.Message);
-        }
-    }
-
-//Insert statement
-    public void Insert(string table, string[] campos, string[] values)
-    {
-        string query = String.Format("INSERT INTO {0} ({1}) VALUES('{2}')", table, string.Join(",",campos), string.Join("','",values));
-
-        //open connection
-        if (this.OpenConnection() == true)
-        {
-            //create command and assign the query and connection from the constructor
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-
-            //Execute command
-            cmd.ExecuteNonQuery();
-
-            //close connection
-            this.CloseConnection();
-        }
-    }
-
-    //Update statement
-    public void Update(string table, string[] campos, string values, string[] clauses)
-    {
-       string  query = "UPDATE {0} SET ";
-       for (int i = 0; i < values.Length; i++)
-       {
-           query += String.Format("{0} = '{1}'",campos[i], values[i]);
-           if ((i + 1) < values.Length)
-           {
-               query += ", ";
-           }
-       }
-
-       if (clauses.Length != 0 && clauses != null)
-       {
-           query += "WHERE";
-           for (int i = 0; i < clauses.Length; i++)
-           {
-               query += String.Format("{0}'", clauses[i]);
-               if ((i + 1) < clauses.Length)
-               {
-                   query += " AND ";
-               }
-           }
-       }
-
-        //Open connection
-        if (this.OpenConnection() == true)
-        {
-            //create mysql command
-            MySqlCommand cmd = new MySqlCommand();
-            //Assign the query using CommandText
-            cmd.CommandText = query;
-            //Assign the connection using Connection
-            cmd.Connection = connection;
-
-            //Execute query
-            cmd.ExecuteNonQuery();
-
-            //close connection
-            this.CloseConnection();
-        }
-    }
-
-    //Delete statement
-    public void Delete(string table, string[] clauses)
-    {
-        string query = "DELETE FROM {0} ";
-
-        if (clauses.Length != 0 && clauses != null)
-        {
-            query += " WHERE ";
-            for (int i = 0; i < clauses.Length; i++)
+            catch (MySqlException ex)
             {
-                query += String.Format("{0}'", clauses[i]);
-                if ((i + 1) < clauses.Length)
+                //When handling errors, you can your application's response based 
+                //on the error number.
+                //The two most common error numbers when connecting are as follows:
+                //0: Cannot connect to server.
+                //1045: Invalid user name and/or password.
+                switch (ex.Number)
                 {
-                    query += " AND ";
+                    case 0:
+                        throw new Exception("Cannot connect to server.  Contact administrator");
+
+                    case 1045:
+                        throw new Exception("Invalid username/password, please try again");
                 }
+                return false;
             }
         }
 
-        if (this.OpenConnection() == true)
+        //Close connection
+        private bool CloseConnection()
         {
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.ExecuteNonQuery();
-            this.CloseConnection();
-        }    
-    }
-
-    //Select statement
-    public List<string>[] Select(string table, string[] joins, string[] collumns, string[] clauses )
-    {
-        string query = String.Format("SELECT ");
-
-        for (int i = 0; i < collumns.Length; i++)
-        {
-            query += String.Format("{0}", collumns[i]);
-            if ((i + 1) < collumns.Length)
+            try
             {
-                query += ", ";
+                connection.Close();
+                return true;
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 
-        query += String.Format(" FROM {0} ", table);
-
-        if (joins.Length != 0 && joins != null)
+        //Insert statement
+        public void Insert(string table, string[] campos, string[] values)
         {
-            query += " JOIN ";
-            for (int i = 0; i < joins.Length; i++)
+            string query = String.Format("INSERT INTO {0} ({1}) VALUES('{2}')", table, string.Join(",", campos), string.Join("','", values));
+
+            //open connection
+            if (this.OpenConnection() == true)
             {
-                query += String.Format("{0}'", joins[i]);                
+                //create command and assign the query and connection from the constructor
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                //Execute command
+                cmd.ExecuteNonQuery();
+
+                //close connection
+                this.CloseConnection();
             }
         }
 
-        if (clauses.Length != 0 && clauses != null)
+        //Update statement
+        public void Update(string table, string[] campos, string values, string[] clauses)
         {
-            query += " WHERE ";
-            for (int i = 0; i < clauses.Length; i++)
+            string query = "UPDATE {0} SET ";
+            for (int i = 0; i < values.Length; i++)
             {
-                query += String.Format("{0}'", clauses[i]);
-                if ((i + 1) < clauses.Length)
+                query += String.Format("{0} = '{1}'", campos[i], values[i]);
+                if ((i + 1) < values.Length)
                 {
-                    query += " AND ";
-                }
-            }
-        }
-
-
-        //Create a list to store the result
-        List<string>[] list = new List<string>[3];
-        list[0] = new List<string>();
-        list[1] = new List<string>();
-        list[2] = new List<string>();
-
-        //Open connection
-        if (this.OpenConnection() == true)
-        {
-            //Create Command
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            //Create a data reader and Execute the command
-            MySqlDataReader dataReader = cmd.ExecuteReader();
-
-            //Read the data and store them in the list
-            while (dataReader.Read())
-            {
-                foreach (string collumn in collumns)
-                {
-                    list[0].Add(dataReader[collumn] + "");
+                    query += ", ";
                 }
             }
 
-            //close Data Reader
-            dataReader.Close();
+            if (clauses.Length != 0 && clauses != null)
+            {
+                query += "WHERE";
+                for (int i = 0; i < clauses.Length; i++)
+                {
+                    query += String.Format("{0}'", clauses[i]);
+                    if ((i + 1) < clauses.Length)
+                    {
+                        query += " AND ";
+                    }
+                }
+            }
 
-            //close Connection
-            this.CloseConnection();
+            //Open connection
+            if (this.OpenConnection() == true)
+            {
+                //create mysql command
+                MySqlCommand cmd = new MySqlCommand();
+                //Assign the query using CommandText
+                cmd.CommandText = query;
+                //Assign the connection using Connection
+                cmd.Connection = connection;
 
-            //return list to be displayed
-            return list;
+                //Execute query
+                cmd.ExecuteNonQuery();
+
+                //close connection
+                this.CloseConnection();
+            }
         }
-        else
+
+        //Delete statement
+        public void Delete(string table, string[] clauses)
         {
-            return list;
-        }   
-    }
+            string query = "DELETE FROM {0} ";
 
-    //Count statement
-    public int Count(string query)
-    {
-        query = "SELECT Count(*) FROM tableinfo";
-        int Count = -1;
+            if (clauses.Length != 0 && clauses != null)
+            {
+                query += " WHERE ";
+                for (int i = 0; i < clauses.Length; i++)
+                {
+                    query += String.Format("{0}'", clauses[i]);
+                    if ((i + 1) < clauses.Length)
+                    {
+                        query += " AND ";
+                    }
+                }
+            }
 
-        //Open Connection
-        if (this.OpenConnection() == true)
-        {
-            //Create Mysql Command
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-
-            //ExecuteScalar will return one value
-            Count = int.Parse(cmd.ExecuteScalar() + "");
-
-            //close Connection
-            this.CloseConnection();
-
-            return Count;
+            if (this.OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.ExecuteNonQuery();
+                this.CloseConnection();
+            }
         }
-        else
+
+        //Select statement
+        public List<Dictionary<string,string>> Select(string table, string[] joins, string[] collumns, string[] clauses)
         {
-            return Count;
-        }
-    }
+            string query = String.Format("SELECT ");
 
-    //Backup
-    public void Backup()
-    {
-        try
+            if (collumns != null)
+                for (int i = 0; i < collumns.Length; i++)
+                {
+                    query += String.Format("{0}", collumns[i]);
+                    if ((i + 1) < collumns.Length)
+                    {
+                        query += ", ";
+                    }
+                }
+
+            query += String.Format(" FROM {0} ", table);
+
+            if (joins != null)
+                if (joins.Length != 0 && joins != null)
+                {
+                    query += " JOIN ";
+                    for (int i = 0; i < joins.Length; i++)
+                    {
+                        query += String.Format("{0}", joins[i]);
+                    }
+                }
+
+            if (clauses != null)
+                if (clauses.Length != 0 && clauses != null)
+                {
+                    query += " WHERE ";
+                    for (int i = 0; i < clauses.Length; i++)
+                    {
+                        query += String.Format("{0}", clauses[i]);
+                        if ((i + 1) < clauses.Length)
+                        {
+                            query += " AND ";
+                        }
+                    }
+                }
+
+
+            //Create a list to store the result
+            List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
+
+
+            //Open connection
+            if (this.OpenConnection() == true)
+            {
+                //Create Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                //Read the data and store them in the list
+                while (dataReader.Read())
+                {
+                    Dictionary<string, string> reg = new Dictionary<string, string>();
+                    for (int i = 0; i < dataReader.FieldCount; i++)
+                    {
+                        reg.Add(dataReader.GetName(i), dataReader.GetValue(i).ToString());
+                    }
+                    list.Add(reg);
+
+                }
+
+                //close Data Reader
+                dataReader.Close();
+
+                //close Connection
+                this.CloseConnection();
+
+                //return list to be displayed
+                return list;
+            }
+            else
+            {
+                return list;
+            }
+        }
+
+        //Count statement
+        public int Count(string query)
         {
-            DateTime Time = DateTime.Now;
-            int year = Time.Year;
-            int month = Time.Month;
-            int day = Time.Day;
-            int hour = Time.Hour;
-            int minute = Time.Minute;
-            int second = Time.Second;
-            int millisecond = Time.Millisecond;
+            query = "SELECT Count(*) FROM tableinfo";
+            int Count = -1;
 
-            //Save file to C:\ with the current date as a filename
-            string path;
-            path = "C:\\MySqlBackup" + year + "-" + month + "-" + day +
-        "-" + hour + "-" + minute + "-" + second + "-" + millisecond + ".sql";
-            StreamWriter file = new StreamWriter(path);
+            //Open Connection
+            if (this.OpenConnection() == true)
+            {
+                //Create Mysql Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
 
+                //ExecuteScalar will return one value
+                Count = int.Parse(cmd.ExecuteScalar() + "");
 
-            ProcessStartInfo psi = new ProcessStartInfo();
-            psi.FileName = "mysqldump";
-            psi.RedirectStandardInput = false;
-            psi.RedirectStandardOutput = true;
-            psi.Arguments = string.Format(@"-u{0} -p{1} -h{2} {3}",
-                uid, password, server, database);
-            psi.UseShellExecute = false;
+                //close Connection
+                this.CloseConnection();
 
-            Process process = Process.Start(psi);
-
-            string output;
-            output = process.StandardOutput.ReadToEnd();
-            file.WriteLine(output);
-            process.WaitForExit();
-            file.Close();
-            process.Close();
+                return Count;
+            }
+            else
+            {
+                return Count;
+            }
         }
-        catch (IOException ex)
+
+        //Backup
+        public void Backup()
         {
-            throw new Exception("Error , unable to backup!");
-        }
-    }
+            try
+            {
+                DateTime Time = DateTime.Now;
+                int year = Time.Year;
+                int month = Time.Month;
+                int day = Time.Day;
+                int hour = Time.Hour;
+                int minute = Time.Minute;
+                int second = Time.Second;
+                int millisecond = Time.Millisecond;
 
-    //Restore
-    public void Restore()
-    {
-        try
+                //Save file to C:\ with the current date as a filename
+                string path;
+                path = "C:\\MySqlBackup" + year + "-" + month + "-" + day +
+            "-" + hour + "-" + minute + "-" + second + "-" + millisecond + ".sql";
+                StreamWriter file = new StreamWriter(path);
+
+
+                ProcessStartInfo psi = new ProcessStartInfo();
+                psi.FileName = "mysqldump";
+                psi.RedirectStandardInput = false;
+                psi.RedirectStandardOutput = true;
+                psi.Arguments = string.Format(@"-u{0} -p{1} -h{2} {3}",
+                    uid, password, server, database);
+                psi.UseShellExecute = false;
+
+                Process process = Process.Start(psi);
+
+                string output;
+                output = process.StandardOutput.ReadToEnd();
+                file.WriteLine(output);
+                process.WaitForExit();
+                file.Close();
+                process.Close();
+            }
+            catch (IOException ex)
+            {
+                throw new Exception("Error , unable to backup!");
+            }
+        }
+
+        //Restore
+        public void Restore()
         {
-            //Read file from C:\
-            string path;
-            path = "C:\\MySqlBackup.sql";
-            StreamReader file = new StreamReader(path);
-            string input = file.ReadToEnd();
-            file.Close();
+            try
+            {
+                //Read file from C:\
+                string path;
+                path = "C:\\MySqlBackup.sql";
+                StreamReader file = new StreamReader(path);
+                string input = file.ReadToEnd();
+                file.Close();
 
-            ProcessStartInfo psi = new ProcessStartInfo();
-            psi.FileName = "mysql";
-            psi.RedirectStandardInput = true;
-            psi.RedirectStandardOutput = false;
-            psi.Arguments = string.Format(@"-u{0} -p{1} -h{2} {3}",
-                uid, password, server, database);
-            psi.UseShellExecute = false;
+                ProcessStartInfo psi = new ProcessStartInfo();
+                psi.FileName = "mysql";
+                psi.RedirectStandardInput = true;
+                psi.RedirectStandardOutput = false;
+                psi.Arguments = string.Format(@"-u{0} -p{1} -h{2} {3}",
+                    uid, password, server, database);
+                psi.UseShellExecute = false;
 
 
-            Process process = Process.Start(psi);
-            process.StandardInput.WriteLine(input);
-            process.StandardInput.Close();
-            process.WaitForExit();
-            process.Close();
+                Process process = Process.Start(psi);
+                process.StandardInput.WriteLine(input);
+                process.StandardInput.Close();
+                process.WaitForExit();
+                process.Close();
+            }
+            catch (IOException ex)
+            {
+                throw new Exception("Error , unable to Restore!");
+            }
         }
-        catch (IOException ex)
-        {
-            throw new Exception("Error , unable to Restore!");
-        }
-    }
     }
 }

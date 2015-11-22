@@ -70,12 +70,17 @@ function loginComFacebook() {
 
     FB.login(function (response) {
         if (response.authResponse) {
-            console.log('Welcome!  Fetching your information.... ');
             FB.api('/me', function (response) {
-                window.location = "Logged";
+                $.post("Logged/LoginFacebook", response, function (data) {
+                    if (data.status) {
+                        window.location = "Logged";
+                    } else {
+                        alert("Falha ao realizar login!");
+                    }
+                }, "json");
             });
         } else {
-           Alert('User cancelled login or did not fully authorize.');
+            Alert('User cancelled login or did not fully authorize.');
         }
-    }, { scope: 'email,user_likes' , return_scopes: true});
+    }, { scope: 'email,user_likes', return_scopes: true });
 }

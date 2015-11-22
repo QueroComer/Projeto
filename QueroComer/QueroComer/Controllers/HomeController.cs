@@ -67,7 +67,10 @@ namespace QueroComer.Controllers
                 try
                 {
                     conexao.Insert("usuarios", new string[] { "nom_usuario", "dt_nascimento", "email", "senha" }, new string[] { cadastro["Nome"], data.Year + "-" + data.Month + "-" + data.Day, cadastro["Login"], cadastro["Senha"] });
-                    return RedirectToAction("Index", "Logged");
+                    FormCollection frm = new FormCollection();
+                    frm.Add("txt_usuario", cadastro["Login"]);
+                    frm.Add("txt_senha", cadastro["Senha"]);
+                    return this.Autenticar(frm);
                 }
                 catch
                 {
@@ -75,7 +78,7 @@ namespace QueroComer.Controllers
                 }
             }
 
-            return View("Cadastro",cadastro);
+            return View("Cadastro", cadastro);
         }
 
         public ActionResult Index()
@@ -110,12 +113,26 @@ namespace QueroComer.Controllers
         }
 
         [HttpPost]
-        public ActionResult Autenticar(FormCollection formulario)
+        public JsonResult Login(FormCollection formulario)
         {
-            if (string.IsNullOrEmpty(formulario["txt_usuario"]) && string.IsNullOrEmpty(formulario["txt_senha"]))
-                return RedirectToAction("Index");
+            return this.Autenticar(formulario);
+        }
 
-            return RedirectToAction("Index", "Logged");
+        private JsonResult Autenticar(FormCollection formulario)
+        {
+            if (!string.IsNullOrEmpty(formulario["txt_usuario"]) && !string.IsNullOrEmpty(formulario["txt_senha"]))
+            {
+                dataConnection conexao = new dataConnection();
+
+                if (conexao.Select("usuarios", null, new string[] { "*" }, new string[] { string.Format("email = '{0}'", formulario["txt_usuario"]), string.Format("senha = '{0}'", formulario["txt_senha"]) }).Any())
+                {
+                    Session["logged"] = true;
+                    return Json(new { status = true });
+                }
+            }
+            Session["logged"] = false;
+            ViewBag.Message = "Preencha o login e a senha!";
+            return Json(new { status = false });
         }
     }
 }

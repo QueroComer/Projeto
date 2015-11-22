@@ -13,28 +13,26 @@ namespace QueroComer.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            if (Session["logged"] != null && (bool)Session["logged"])
+            {
+                return View();
+            }
+            ViewBag.Message = "Por favor, confira o login";
+            return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult Pratos()
+        [HttpPost]
+        public JsonResult LoginFacebook(string id, string name)
         {
-            return View();
-        }
+            if(!String.IsNullOrEmpty(id)){
+                Session["logged"] = true;
+                Session["name"] = name;
+                Session["id"] = id;
+                return Json(new { status = true });
+            }
+            Session["logged"] = false;
+            return Json(new { status = false });
 
-        public ActionResult Lugares()
-        {
-            return View();
-        }
-
-        public ActionResult Promocoes()
-        {
-            return View();
-        }
-
-        public ActionResult AbertoAgora ()
-        {
-            return View();
-        }
-
+        }      
     }
 }

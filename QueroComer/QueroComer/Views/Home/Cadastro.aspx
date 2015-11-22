@@ -23,11 +23,15 @@
             <br />
             <label for="Endereco">Endereço:</label>
             <input  type="text" id="Endereco" name="Endereco"  placeholder="Digite seu endereço"  />
+            <br />            
+            <label for="Estado">Estado:</label>
+            <select id="Estado" name="Estado">    
+                <option>-- SELECIONE --</option>            
+            </select>
             <br />
             <label for="Cidade">Cidade:</label>
-            <select id="Cidade" name="Cidade"  placeholder="Digite sua cidade" />
-            <label for="Estado">Estado:</label>
-            <input type="text" id="Estado" name="Estado" placeholder="Digite seu estado" />
+            <select id="Cidade" name="Cidade">                
+            </select>
         </div>
         <div>
             <input type="submit" value="Cadastrar" />
