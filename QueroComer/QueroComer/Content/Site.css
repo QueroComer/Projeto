@@ -264,6 +264,14 @@ ul#menu {
         height: 19px;
         border: 1px black solid;
         padding: 1.1em 1em;
+        cursor:pointer;
+    }
+    .sugestoes > ul > li:hover {        
+        height: 19px;
+        border: 1px black solid;
+        padding: 1.1em 1em;
+        cursor:pointer;
+        background-color: rgba(211,220,224,0.39);
     }
     
 .map {

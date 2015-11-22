@@ -7,10 +7,10 @@
 <asp:Content ID="indexFeatured" ContentPlaceHolderID="FeaturedContent" runat="server">
 </asp:Content>
 
-<asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">    
+<asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="sugestoes"></div>
-    <div class="map">
-        MAPA AQUI
+    <div class="map" id="map">
     </div>
 
 </asp:Content>
+
